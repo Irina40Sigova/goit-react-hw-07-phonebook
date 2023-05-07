@@ -1,29 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contactsOperations';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import { selectVisibleContacts } from 'redux/selectors';
 
 import { Box, Title, Div } from './Contacts.styled';
 
 export const Contacts = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-
-  const filter = useSelector(selectFilter);
-
-  const visibleContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter)
-    );
-  };
+  const visibleContacts = useSelector(selectVisibleContacts);
 
   return (
     <>
       <Title>Contacts</Title>
       <Box>
-        {visibleContacts().map(e => (
+        {visibleContacts.map(e => (
           <Div key={e.id}>
             <p>
-              {e.name}: {e.number}
+              {e.name}: {e.phone}
             </p>
             <button type="button" onClick={() => dispatch(deleteContact(e.id))}>
               Delete

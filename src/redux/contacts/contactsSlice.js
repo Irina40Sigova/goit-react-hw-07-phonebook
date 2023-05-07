@@ -7,7 +7,7 @@ const handlePending = state => {
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
-  // state.error = action.payload;
+  state.error = action.payload;
 };
 
 const handleFulfilledFetch = (state, action) => {
@@ -49,17 +49,17 @@ export const contactsSlice = createSlice({
         isAnyOf(
           fetchContacts.pending,
           addContact.pending,
-          deleteContact.pending,
-          handlePending
-        )
+          deleteContact.pending
+        ),
+        handlePending
       )
       .addMatcher(
         isAnyOf(
           fetchContacts.rejected,
           addContact.rejected,
-          deleteContact.rejected,
-          handleRejected
-        )
+          deleteContact.rejected
+        ),
+        handleRejected
       );
   },
 });

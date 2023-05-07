@@ -1,12 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import { LoginForm } from 'components/LoginForm/LoginForm';
-// import { Filter } from 'components/Filter/Filter';
+import { Filter } from 'components/Filter/Filter';
 import { Contacts } from 'components/Contacts/Contacts';
 
-import { Container, Title, SubTitle } from './App.styled';
+import { Container, SubTitle, Title } from './App.styled';
 
-import { selectContacts, selectIsLoading, selectError } from 'redux/selectors';
+import {
+  selectContacts,
+  selectIsLoading,
+  selectError,
+} from 'redux/contacts/selectors';
 
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/contactsOperations';
@@ -26,12 +30,11 @@ export const App = () => {
       <Title> Phonebook</Title>
       <LoginForm />
 
-      <SubTitle>Contacts</SubTitle>
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoading && !error && <SubTitle>Request in progress...</SubTitle>}
 
       {contacts.length > 0 ? (
         <>
-          {/* <Filter /> */}
+          <Filter />
           <Contacts />
         </>
       ) : (

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperations';
-import { selectContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/contacts/selectors';
 
 import { Formik, Field } from 'formik';
 import PropTypes from 'prop-types';
